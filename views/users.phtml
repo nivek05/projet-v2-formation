@@ -1,0 +1,47 @@
+<!-- PAGE LISTE DES USERS -->
+<table class="table table-striped table-hover table-sm table-responsive w-75 p-3 mx-auto"> 
+    <thead>
+        <tr>
+            <th colspan="2">
+            LISTE DES USERS 
+            </th>
+            <th colspan="2">
+                <form action="users/add" method="POST">
+                    <div class="d-flex justify-content-end">
+                        <button type="submit" class="btn btn-primary">Ajouter</button>
+                    </div>
+                </form>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="text-center">ID</td>
+            <td class="text-center">Nom du user</td>
+            <td class="text-center">Mot de passe</td>
+            <td>&nbsp;</td>
+        </tr>
+
+        <?php
+        foreach($users as $user):
+        ?>
+        <tr>
+            <td class="text-center"><?= $user->getId() ?></td>
+            <td class="text-center"><?= $user->getName() ?></td>
+            <td class="text-center"><?= "Mot de passe crypter" //$user->getPwd() ?></td>
+            <td class="text-center">
+                <a href="users/<?= $user->getId()?>" class="btn btn-primary">Editer</a>
+                <form action="users/delete" method="POST" style="display:inline-block;">
+                    <input type="hidden" name="id" id="id" value="<?= $user->getId()?>">
+                    <button type="submit" class="btn btn-danger">Supprimer</button>
+                </form>
+            </td>
+        </tr>
+        <?php endforeach ?>
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="4" class="text-center"></td>
+        </tr>
+    </tfoot>  
+</table>

@@ -1,0 +1,53 @@
+<!-- PAGE LISTE DES ARTICLES-->
+
+<table class="table table-striped table-hover table-sm table-responsive w-75 p-3 mx-auto"> 
+    <thead>
+        <tr>
+            <th colspan="4">
+            LISTE DES ARTICLES 
+            </th>
+            <th colspan="2">
+                <form action="articles/add" method="POST">
+                    <div class="d-flex justify-content-end">
+                        <button type="submit" class="btn btn-primary d-flex justify-content-end">Ajouter</button>
+                    </div>
+                </form>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="text-center">ID</td>
+            <td class="text-center">Nom de l'article</td>
+            <td class="text-center">Titre</td>
+            <td class="text-center">content</td>
+            <td class="text-center">Categorie de l'article</td>
+            <td class="text-center"></td>
+        </tr>
+
+        <?php
+                foreach($articles as $article):
+        ?>
+   
+        <tr>
+            <td class="text-center"><?= $article->getId() ?></td>
+            <td class="text-center"><?= $article->getName() ?></td>
+            <td class="text-center"><?= $article->getTitle() ?></td>
+            <td class="text-center"><?= substr($article->getContent(), 0, 40).'...'  ?></td>
+            <td class="text-center"><?= $article->getCategory() ?></td>
+            <td class="text-center">
+                <a href="articles/<?= $article->getId()?>" class="btn btn-primary">Editer</a>
+                <form action="articles/delete" method="POST" style="display:inline-block;">
+                    <input type="hidden" name="id" id="id" value="<?= $article->getId()?>">
+                    <button type="submit" class="btn btn-danger">Supprimer</button>
+                </form>
+            </td>
+        </tr>
+        <?php endforeach ?>
+    <tbody>
+    <tfoot>
+        <tr>
+            <td colspan="4" class="text-center"></td>
+        </tr>
+    </tfoot>  
+</table>

@@ -1,0 +1,40 @@
+
+
+<?php 
+if(!empty($category)){
+    foreach($category as $category): ?>
+    <div class="w-50 p-3 mx-auto">
+        <form action="update" method="POST">
+            <h1>Edition de la catégorie - ID: <?= $category->getId() ?></h1>
+            <input type="hidden" name="id" value="<?= $category->getId() ?>" id="id">
+            <div class="form-group">
+                <label for="name">Nom de la categorie</label>
+                <input type="text" name="name" id="name" value="<?= $category->getName() ?>" class="form-control" required>
+            </div>
+            <br>
+            <div class="text-center">
+                <input type="submit" value="Update article" class="btn btn-primary">
+            </div>
+        </form>
+    </div>
+<?php
+    endforeach ;
+}
+else{
+?>
+    <div class="w-50 p-3 mx-auto">
+        <form action="insert" method="POST">
+            <h1>Nouvelle catégorie</h1>
+            <div class="form-group">
+                <label for="name">Nom de la catégorie</label>
+                <input type="text" name="name" id="name" class="form-control" required>
+            </div>
+            <br>
+            <div class="text-center">
+                <input type="submit" value="Ajouter article" class="btn btn-primary">
+            </div>
+        </form>
+    </div>
+<?php
+}
+?>

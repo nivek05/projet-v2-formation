@@ -1,0 +1,47 @@
+<!-- PAGE LISTE DES CATEGORIES -->
+<table class="table table-striped table-hover table-sm table-responsive w-75 p-3 mx-auto"> 
+    <thead>
+        <tr>
+            <th colspan="2">
+            LISTE DES CATEGORIES 
+            </th>
+            <th>
+                <form action="categories/add" method="POST">
+                    <div class="d-flex justify-content-end">
+                        <button type="submit" class="btn btn-primary">Ajouter</button>
+                    </div>
+                </form>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="text-center">ID</td>
+            <td class="text-center">Nom de la categorie</td>
+            <td>&nbsp;</td>
+        </tr>
+
+        <?php
+                foreach($categories as $category):
+                    
+        ?>
+        <tr>
+            <td class="text-center"><?= $category->getId() ?></td>
+            <td class="text-center"><?= $category->getName() ?></td>
+            <td class="text-center">
+                <a href="categories/<?= $category->getId()?>" class="btn btn-primary">Editer</a>
+                <form action="categories/delete" method="POST" style="display:inline-block;">
+                    <input type="hidden" name="id" id="id" value="<?= $category->getId()?>">
+                    <button type="submit" class="btn btn-danger">Supprimer</button>
+                </form>
+            </td>
+        </tr>
+
+        <?php endforeach ?>
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="4" class="text-center"></td>
+        </tr>
+    </tfoot>  
+</table>
